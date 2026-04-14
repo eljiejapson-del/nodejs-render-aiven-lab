@@ -1,5 +1,0 @@
-# Add .env to gitignore
-echo .env >> .gitignore
-
-# Check if .gitignore exists, if not create it
-# echo ".env" > .gitignore

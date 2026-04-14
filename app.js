@@ -4,23 +4,22 @@ const mysql = require("mysql2");
 const app = express();
 
 const db = mysql.createConnection({
-    host: "mysql-13fe6d3b-eljiejapson-cf5e.e.aivencloud.com",
-    user: "avnadmin",
-    password: "AVNS_zuELSdgARy8NwusZX6A",
-    database: "peteros_db",
-    port: "16573"
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,s
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
 });
 
-app.get("/", (req, res)=> {
-    db.query("SELECT NOW()", (err, result)=>{
-        if(err) throw err;
-        res.send("Database Connected Successfully: "+ result[0]["NOW()"]);
-
-    });
+app.get("/", (req, res) => {
+  db.query("SELECT NOW()", (err, result) => {
+    if(err) throw err;
+    res.send("Database Connected Successfully: " + result[0]["NOW()"]);
+  });
 });
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    console.log("Server running on port" + PORT);
+  console.log("Server running on port " + PORT);
 });
